@@ -13,16 +13,19 @@ export function RunLogSection({ initialRuns }: { initialRuns: RunLog[] }) {
   const [distance, setDistance] = useState("");
   const [minutes, setMinutes] = useState("");
   const [note, setNote] = useState("");
+  const weekStart = startOfWeek();
+  const thisWeek = runs.filter((run) => run.ranAt >= weekStart);
   const save = async () => {
     const distanceKm = Number(distance.replace(",", ".")); const durationMinutes = Number(minutes);
     if (!(distanceKm > 0 && durationMinutes > 0)) return;
     const run = await runRepository.add({ ranAt: new Date(`${date}T12:00:00`).getTime(), type, distanceKm, durationSeconds: Math.round(durationMinutes * 60), note: note.trim() || undefined });
     setRuns((current) => [run, ...current]); setDistance(""); setMinutes(""); setNote(""); setOpen(false);
   };
-  return <section className="running-section"><div className="section-heading"><div><p className="eyebrow">LÖPNING</p><h2>Löplogg</h2></div><button className="add-measurement" onClick={() => setOpen(!open)}><Plus size={16}/> Lägg till</button></div>
+  return <section className="running-section"><div className="section-heading"><div><p className="eyebrow">LÖPNING</p><h2>Löplogg</h2></div><button className="add-measurement" onClick={() => setOpen(!open)}><Plus size={16}/> Lägg till</button></div><div className="run-summary"><div><strong>{thisWeek.reduce((sum,run)=>sum+run.distanceKm,0).toFixed(1)}</strong><span>km denna vecka</span></div><div><strong>{thisWeek.length}</strong><span>pass</span></div><div><strong>{thisWeek.length ? pace({ ...thisWeek[0], distanceKm:thisWeek.reduce((s,r)=>s+r.distanceKm,0), durationSeconds:thisWeek.reduce((s,r)=>s+r.durationSeconds,0) }) : "—"}</strong><span>snittempo</span></div></div>
     {open && <div className="run-form"><label>Datum<input type="date" value={date} onChange={(e) => setDate(e.target.value)}/></label><label>Typ<select value={type} onChange={(e) => setType(e.target.value as RunType)}>{Object.entries(labels).map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select></label><label>Distans (km)<input inputMode="decimal" value={distance} onChange={(e) => setDistance(e.target.value)}/></label><label>Tid (min)<input inputMode="decimal" value={minutes} onChange={(e) => setMinutes(e.target.value)}/></label><label className="wide">Kommentar<input value={note} onChange={(e) => setNote(e.target.value)}/></label><button className="primary-action wide" onClick={() => void save()}>Spara löppass</button></div>}
     {runs.length === 0 ? <div className="history-empty"><Route size={26}/><strong>Inga löppass ännu</strong><p>Logga distans och tid så räknar Ember ut ditt tempo.</p></div> : <div className="run-list">{runs.map((run) => <article key={run.id}><span className="run-date">{new Intl.DateTimeFormat("sv-SE",{day:"numeric",month:"short"}).format(run.ranAt)}</span><div><strong>{labels[run.type]} · {run.distanceKm.toFixed(1)} km</strong><span>{formatDuration(run.durationSeconds)} · {pace(run)} min/km{run.note ? ` · ${run.note}` : ""}</span></div><button aria-label="Radera löppass" onClick={() => { if (confirm("Radera löppasset?")) void runRepository.remove(run.id).then(() => setRuns((current) => current.filter((item) => item.id !== run.id))); }}><Trash2 size={16}/></button></article>)}</div>}
   </section>;
 }
 function formatDuration(seconds:number){const h=Math.floor(seconds/3600),m=Math.round((seconds%3600)/60);return h?`${h} h ${m} min`:`${m} min`;}
 function pace(run:RunLog){const seconds=run.durationSeconds/run.distanceKm;return `${Math.floor(seconds/60)}:${String(Math.round(seconds%60)).padStart(2,"0")}`;}
+function startOfWeek(){const date=new Date();const day=date.getDay()||7;date.setDate(date.getDate()-day+1);date.setHours(0,0,0,0);return date.getTime();}

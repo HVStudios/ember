@@ -65,8 +65,12 @@ function formatDuration(seconds: number) {
   return `${minutes} min`;
 }
 
-function shortResult(sets: Array<{ load: string; reps: string }>) {
+function shortResult(sets: Array<{ load: string; reps: string; distanceMeters?: string; durationSeconds?: string }>) {
   if (!sets.length) return "inga resultat";
   const load = sets.find((set) => set.load)?.load;
+  const distance = sets.find((set) => set.distanceMeters)?.distanceMeters;
+  const duration = sets.find((set) => set.durationSeconds)?.durationSeconds;
+  if (distance) return `${load ? `${load} kg · ` : ""}${distance} meter`;
+  if (duration) return `${load ? `${load} kg · ` : ""}${duration} sekunder`;
   return `${load ? `${load} kg · ` : ""}${sets.map((set) => set.reps).join(" / ")} reps`;
 }

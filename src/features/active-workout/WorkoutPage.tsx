@@ -70,6 +70,7 @@ export function WorkoutPage() {
       <div className="workout-progress"><span style={{ width: `${((currentIndex + 1) / workout.exercises.length) * 100}%` }} /></div>
 
       <main className="exercise-stage">
+        {!draft.warmupCompleted && currentIndex === 0 && <section className="warmup-card"><p className="eyebrow">5 MIN UPPVÄRMNING</p><h2>{workout.id === "lower" ? "Aktivera höft och säte" : "Förbered skuldror och bål"}</h2><ul>{(workout.id === "lower" ? ["Glute bridge · 12 reps", "Sidogång med miniband · 10 steg/sida", "Kontrollerad kroppsviktsknäböj · 10 reps"] : ["Face pull eller band pull-apart · 15 reps", "Extern axelrotation · 12/sida", "Dead bug · 8/sida"]).map((item) => <li key={item}>{item}</li>)}</ul><button onClick={session.completeWarmup}>Uppvärmning klar</button></section>}
         <div className="exercise-heading">
           <div><p className="eyebrow">ÖVNING {currentIndex + 1} AV {workout.exercises.length}</p><h1>{exercise.name.sv}</h1><p>{item.target.sets} set · {targetLabel(item.target)} · RIR {item.target.rir?.min ?? "—"}–{item.target.rir?.max ?? "—"}</p></div>
           <button className="icon-button" aria-label="Övningshjälp" onClick={() => setShowGuide((value) => !value)}><CircleHelp size={21} /></button>
@@ -87,16 +88,17 @@ export function WorkoutPage() {
         {alternatives.length > 0 && <button className="substitute-trigger" onClick={() => setShowAlternatives(true)}>Byt övning</button>}
 
         <section className="sets-section">
-          <div className="set-table-head"><span>SET</span><span>KG / HANTEL</span><span>REPS</span><span /></div>
+          <div className="set-table-head"><span>SET</span><span>KG</span><span>{item.target.distanceMeters ? "METER" : item.target.durationSeconds ? "SEK" : item.target.unilateral ? "REPS/SIDA" : "REPS"}</span><span /></div>
           {exerciseLog.sets.map((set) => (
             <div className={`set-row ${set.completed ? "is-complete" : ""}`} key={set.index}>
               <span className="set-number">{set.index + 1}</span>
               <label><span className="sr-only">Vikt för set {set.index + 1}</span><input inputMode="decimal" placeholder="—" value={set.load} disabled={set.completed} onChange={(event) => session.updateSet(set.index, "load", event.target.value)} /></label>
-              <label><span className="sr-only">Repetitioner för set {set.index + 1}</span><input inputMode="numeric" placeholder="—" value={set.reps} disabled={set.completed} onChange={(event) => session.updateSet(set.index, "reps", event.target.value)} /></label>
+              <label><span className="sr-only">{item.target.distanceMeters ? "Meter" : item.target.durationSeconds ? "Sekunder" : "Repetitioner"} för set {set.index + 1}</span><input inputMode="numeric" placeholder="—" value={item.target.distanceMeters ? set.distanceMeters : item.target.durationSeconds ? set.durationSeconds : set.reps} disabled={set.completed} onChange={(event) => session.updateSet(set.index, item.target.distanceMeters ? "distanceMeters" : item.target.durationSeconds ? "durationSeconds" : "reps", event.target.value)} /></label>
               <button className="complete-set-button" disabled={!set.completed && !canCompleteSet(set)} onClick={() => session.toggleSet(set.index, item.target.restSeconds)} aria-label={`${set.completed ? "Öppna" : "Markera"} set ${set.index + 1} ${set.completed ? "igen" : "klart"}`}><span className="check-circle">{set.completed ? "✓" : ""}</span></button>
             </div>
           ))}
         </section>
+        {complete && item.target.rir && <section className="rir-check"><span>FAKTISK RIR</span><strong>Hur många bra reps hade du kvar?</strong><div>{[0,1,2,3,4].map((rir) => <button className={exerciseLog.actualRir === rir ? "is-active" : ""} key={rir} onClick={() => session.setRir(rir)}>{rir}{rir === 4 ? "+" : ""}</button>)}</div></section>}
 
         <div className="exercise-nav">
           <button disabled={currentIndex === 0} onClick={() => navigateToExercise(currentIndex - 1)}><ChevronLeft size={18} /> Föregående</button>

@@ -5,7 +5,7 @@ import { BrandMark } from "@/components/BrandMark";
 import { ExerciseVisual } from "@/components/ExerciseVisual";
 import { athleticFoundationV1 } from "@/data/programs/athletic-foundation-v1";
 import { getExerciseName } from "@/data/exercises";
-import { activeWorkoutRepository, completedWorkoutRepository } from "@/db/database";
+import { activeWorkoutRepository, completedWorkoutRepository, runRepository } from "@/db/database";
 import type { ActiveWorkoutDraft } from "@/types/training";
 import { readSettings } from "@/lib/settings";
 
@@ -15,15 +15,18 @@ export function HomePage() {
   const workout = athleticFoundationV1.workouts.find((item) => item.id === nextWorkoutId)!;
   const [completedThisWeek, setCompletedThisWeek] = useState(0);
   const [activeDraft, setActiveDraft] = useState<ActiveWorkoutDraft>();
+  const [runsThisWeek, setRunsThisWeek] = useState(0);
 
   useEffect(() => {
     void Promise.all([
       completedWorkoutRepository.countSince(startOfWeek()),
       completedWorkoutRepository.list(),
       activeWorkoutRepository.list(),
-    ]).then(([count, history, drafts]) => {
+      runRepository.list(),
+    ]).then(([count, history, drafts, runs]) => {
       setCompletedThisWeek(count);
       setActiveDraft(drafts[0]);
+      setRunsThisWeek(runs.filter((run) => run.ranAt >= startOfWeek()).length);
       const latestCore = history.find((completed) => athleticFoundationV1.workoutSequence.includes(completed.workoutTemplateId));
       if (!latestCore) return;
       const currentIndex = athleticFoundationV1.workoutSequence.indexOf(latestCore.workoutTemplateId);
@@ -78,8 +81,9 @@ export function HomePage() {
         <div className="section-heading"><div><p className="eyebrow">DEN HÄR VECKAN</p><h2>Håll glöden vid liv</h2></div><span>{completedThisWeek} av 3</span></div>
         <div className="week-grid">
           <div className="metric-card"><span className="metric-icon is-done"><Check size={18} /></span><strong>{completedThisWeek}</strong><p>Gympass</p><small>av 3 planerade</small></div>
-          <div className="metric-card"><span className="metric-icon"><Footprints size={18} /></span><strong>2</strong><p>Löppass</p><small>av 2 planerade</small></div>
+          <div className="metric-card"><span className="metric-icon"><Footprints size={18} /></span><strong>{runsThisWeek}</strong><p>Löppass</p><small>av 2 planerade</small></div>
         </div>
+        <div className="week-plan"><span>Mån<strong>Överkropp A</strong></span><span>Tis<strong>Lugn löpning</strong></span><span>Ons<strong>Underkropp</strong></span><span>Fre<strong>Helkropp</strong></span><span>Lör<strong>Tempo / intervall</strong></span></div>
       </section>
 
       <blockquote className="daily-note">“Det viktiga är inte ett perfekt pass. Det är att du kommer tillbaka.”<span>— EMBER</span></blockquote>

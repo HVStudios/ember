@@ -68,6 +68,8 @@ export type WorkoutSetLog = {
   index: number;
   load: string;
   reps: string;
+  distanceMeters?: string;
+  durationSeconds?: string;
   completed: boolean;
   completedAt?: number;
 };
@@ -77,6 +79,7 @@ export type WorkoutExerciseLog = {
   originalExerciseId?: ExerciseId;
   prescription: WorkoutExercisePrescription;
   sets: WorkoutSetLog[];
+  actualRir?: number;
 };
 
 export type ActiveWorkoutDraft = {
@@ -90,6 +93,7 @@ export type ActiveWorkoutDraft = {
   currentExerciseIndex: number;
   exercises: WorkoutExerciseLog[];
   restEndsAt?: number;
+  warmupCompleted?: boolean;
 };
 
 export type CompletedWorkout = Omit<ActiveWorkoutDraft, "restEndsAt"> & {
@@ -117,3 +121,6 @@ export type RunLog = {
   note?: string;
   createdAt: number;
 };
+
+export type ProgressPhotoPose = "front" | "side" | "back";
+export type ProgressPhoto = { id: string; takenAt: number; pose: ProgressPhotoPose; blob: Blob; note?: string; createdAt: number };

@@ -27,7 +27,7 @@ export function updateSetValue(
   draft: ActiveWorkoutDraft,
   exerciseIndex: number,
   setIndex: number,
-  field: "load" | "reps",
+  field: "load" | "reps" | "distanceMeters" | "durationSeconds",
   value: string,
   now = Date.now(),
 ): ActiveWorkoutDraft {
@@ -75,11 +75,15 @@ export function isExerciseComplete(draft: ActiveWorkoutDraft, exerciseIndex: num
 }
 
 export function canCompleteSet(set: WorkoutSetLog) {
-  return Number(set.reps) > 0;
+  return Number(set.reps) > 0 || Number(set.distanceMeters) > 0 || Number(set.durationSeconds) > 0;
 }
 
 function emptySet(index: number): WorkoutSetLog {
-  return { index, load: "", reps: "", completed: false };
+  return { index, load: "", reps: "", distanceMeters: "", durationSeconds: "", completed: false };
+}
+
+export function setActualRir(draft: ActiveWorkoutDraft, exerciseIndex: number, rir: number, now = Date.now()): ActiveWorkoutDraft {
+  return { ...draft, updatedAt: now, exercises: draft.exercises.map((exercise, index) => index === exerciseIndex ? { ...exercise, actualRir: rir } : exercise) };
 }
 
 function sanitizeNumeric(value: string) {

@@ -11,6 +11,7 @@ import { MeasurementForm } from "@/features/measurements/MeasurementForm";
 import { RunLogSection } from "@/features/running/RunLogSection";
 import { StrengthProgress } from "@/features/progress/StrengthProgress";
 import type { RunLog } from "@/types/training";
+import { ProgressPhotos } from "@/features/photos/ProgressPhotos";
 
 export function ProgressPage() {
   const [history, setHistory] = useState<CompletedWorkout[]>([]);
@@ -46,6 +47,7 @@ export function ProgressPage() {
       </section>
       <StrengthProgress workouts={history} />
       {!isLoading && <RunLogSection initialRuns={runs} />}
+      <ProgressPhotos />
       <section className="history-section">
         <div className="section-heading"><div><p className="eyebrow">PASSHISTORIK</p><h2>Senaste passen</h2></div></div>
         {isLoading ? <div className="history-empty">Läser historiken…</div> : history.length === 0 ? (

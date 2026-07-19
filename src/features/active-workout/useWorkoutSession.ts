@@ -9,6 +9,7 @@ import {
   toggleSetComplete,
   updateSetValue,
   substituteExercise,
+  setActualRir,
 } from "./session";
 
 export function useWorkoutSession(workout: WorkoutTemplate) {
@@ -48,7 +49,7 @@ export function useWorkoutSession(workout: WorkoutTemplate) {
   return {
     draft,
     isLoading,
-    updateSet: (setIndex: number, field: "load" | "reps", value: string) =>
+    updateSet: (setIndex: number, field: "load" | "reps" | "distanceMeters" | "durationSeconds", value: string) =>
       commit((current) => updateSetValue(current, current.currentExerciseIndex, setIndex, field, value)),
     toggleSet: (setIndex: number, restSeconds: number) =>
       commit((current) => {
@@ -60,6 +61,8 @@ export function useWorkoutSession(workout: WorkoutTemplate) {
     goToExercise: (index: number) => commit((current) => moveToExercise(current, index)),
     dismissRest: () => commit((current) => ({ ...current, restEndsAt: undefined, updatedAt: Date.now() })),
     substitute: (exerciseId: string) => commit((current) => substituteExercise(current, current.currentExerciseIndex, exerciseId)),
+    setRir: (rir: number) => commit((current) => setActualRir(current, current.currentExerciseIndex, rir)),
+    completeWarmup: () => commit((current) => ({ ...current, warmupCompleted: true, updatedAt: Date.now() })),
     previousResults,
     finish: async () => {
       if (!draft) return undefined;

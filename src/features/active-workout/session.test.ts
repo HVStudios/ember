@@ -43,4 +43,11 @@ describe("workout session", () => {
     expect(substituted.exercises[0].exerciseId).toBe("incline-neutral-dumbbell-press");
     expect(substituted.exercises[0].sets[0].reps).toBe("");
   });
+
+  it("stores distance for carry-style exercises", () => {
+    const lower = athleticFoundationV1.workouts.find((item) => item.id === "lower")!;
+    const draft = createWorkoutDraft(athleticFoundationV1, lower, 100);
+    const updated = updateSetValue(draft, 4, 0, "distanceMeters", "20 m", 110);
+    expect(updated.exercises[4].sets[0].distanceMeters).toBe("20");
+  });
 });

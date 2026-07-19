@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from "dexie";
-import type { ActiveWorkoutDraft, BodyMeasurement, CompletedWorkout, ExerciseId, RunLog, WorkoutExerciseLog } from "@/types/training";
+import type { ActiveWorkoutDraft, BodyMeasurement, CompletedWorkout, ExerciseId, ProgressPhoto, RunLog, WorkoutExerciseLog } from "@/types/training";
 import { createCompletedWorkout } from "@/lib/workouts/completion";
 
 class EmberDatabase extends Dexie {
@@ -7,6 +7,7 @@ class EmberDatabase extends Dexie {
   completedWorkouts!: EntityTable<CompletedWorkout, "id">;
   measurements!: EntityTable<BodyMeasurement, "id">;
   runs!: EntityTable<RunLog, "id">;
+  progressPhotos!: EntityTable<ProgressPhoto, "id">;
 
   constructor() {
     super("ember");
@@ -28,6 +29,7 @@ class EmberDatabase extends Dexie {
       measurements: "&id, measuredAt",
       runs: "&id, ranAt, type",
     });
+    this.version(5).stores({ activeWorkouts:"&id, workoutTemplateId, updatedAt", completedWorkouts:"&id, workoutTemplateId, endedAt", measurements:"&id, measuredAt", runs:"&id, ranAt, type", progressPhotos:"&id, takenAt, pose" });
   }
 }
 
@@ -67,6 +69,11 @@ export const runRepository = {
     return run;
   },
   async remove(id: string) { await db.runs.delete(id); },
+};
+export const progressPhotoRepository = {
+  async list(){ return db.progressPhotos.orderBy("takenAt").reverse().toArray(); },
+  async add(input: Omit<ProgressPhoto,"id"|"createdAt">){ const createdAt=Date.now(); const photo={...input,id:`photo:${createdAt}:${input.pose}`,createdAt}; await db.progressPhotos.put(photo); return photo; },
+  async remove(id:string){ await db.progressPhotos.delete(id); },
 };
 
 export const completedWorkoutRepository = {
