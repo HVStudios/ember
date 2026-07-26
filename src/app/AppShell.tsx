@@ -1,10 +1,11 @@
-import { BarChart3, Dumbbell, Home, Settings } from "lucide-react";
+import { BarChart3, Dumbbell, Home, Settings, Utensils } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 
 const navigation = [
   { to: "/", label: "Hem", icon: Home, end: true },
   { to: "/program", label: "Program", icon: Dumbbell },
   { to: "/progress", label: "Utveckling", icon: BarChart3 },
+  { to: "/meals", label: "Meals", icon: Utensils },
   { to: "/settings", label: "Inställningar", icon: Settings },
 ];
 

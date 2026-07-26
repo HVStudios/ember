@@ -7,8 +7,8 @@
 
 ## 1. Product summary
 
-Ember is a calm, premium workout companion for people who want to become stronger
-and more athletic without turning training into administration. It guides the user
+Ember is a calm, premium training and meal-prep companion for people who want to become stronger
+and more athletic without turning everyday habits into administration. It guides the user
 through one exercise at a time, explains unfamiliar movements, remembers previous
 performance, and recommends a sensible next step.
 
@@ -58,7 +58,8 @@ leave knowing what to do next time.
 
 ## 5. Non-goals for MVP
 
-- Calorie, macro, recipe, step, or sleep tracking.
+- Calorie, macro, step, or sleep tracking. Ember Meals provides curated recipes,
+  but does not replace a food diary such as Lifesum.
 - Medical diagnosis, rehabilitation prescriptions, or automatic pain analysis.
 - AI-generated training plans or conversational coaching.
 - Social feeds, leaderboards, challenges, or public profiles.
@@ -199,6 +200,18 @@ model.
 - Export all user-created data as JSON.
 - Destructive actions require confirmation.
 
+### Ember Meals
+
+- Ship a curated, content-first recipe library rather than a general recipe editor.
+- Each recipe includes a hero image, estimated time and price, calories, protein,
+  meal-prep/freezer/taste scores, ingredient groups, instructions, tips,
+  variations, alternatives, and storage guidance.
+- Scale structured ingredient quantities for 2, 4, 6, or 8 portions.
+- Support local search and favorites without requiring an account.
+- Label nutritional values, prices, and timings as estimates.
+- Prioritize restaurant-quality flavor, high protein, Swedish grocery availability,
+  reusable pantry ingredients, and reliable meal prep.
+
 ## 10. Content and safety requirements
 
 - Exercise language is instructional, not medical.
@@ -213,12 +226,13 @@ model.
 
 ## 11. Information architecture
 
-Bottom navigation has four destinations:
+Bottom navigation has five destinations:
 
 1. **Hem** — next workout, week, latest signals.
 2. **Program** — sessions, exercise details, substitutions.
 3. **Utveckling** — workout, exercise, run, and body trends.
-4. **Inställningar** — preferences, export, data controls.
+4. **Meals** — curated recipes, search, favorites, and portion scaling.
+5. **Inställningar** — preferences, backup, and local data controls.
 
 An active workout is a focused modal route that can be minimized but remains
 persistent until completed or discarded.
@@ -256,4 +270,3 @@ For the private alpha, success is behavioral rather than commercial:
 - Whether run logging belongs in MVP UI or immediately after core gym logging.
 - Exact rule for load increments across cable stacks and different gyms.
 - Whether the first release needs manual program editing or only substitutions.
-
