@@ -1,4 +1,5 @@
 import type { Ingredient, Recipe } from "@/types/meals";
+import { emberMealsV1Additions } from "./ember-meals-v1-additions";
 
 const i = (amount: number | undefined, unit: string | undefined, item: string, note?: string): Ingredient => ({ amount, unit, item, note });
 
@@ -100,6 +101,7 @@ export const emberMealsV1: Recipe[] = [
     alternatives: ["Kycklinglårfilé tål uppvärmning extra bra.","Keso kan blandas i tzatzikin för ännu mer protein."],
     storage: "4 dagar i kyl. Kyckling och potatis kan frysas; sallad och tzatziki ska inte frysas.",
   },
+  ...emberMealsV1Additions,
 ];
 
 export function getRecipe(id: string) {
