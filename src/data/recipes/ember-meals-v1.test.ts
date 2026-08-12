@@ -13,6 +13,9 @@ describe("Ember Meals v1", () => {
       expect(recipe.protein).toBeLessThanOrEqual(55);
       expect(recipe.ingredientGroups.length).toBeGreaterThan(0);
       expect(recipe.instructions.length).toBeGreaterThan(4);
+      const ingredients = recipe.ingredientGroups.flatMap(({ ingredients }) => ingredients);
+      expect(ingredients.some(({ item }) => item.includes("vitlökspasta"))).toBe(false);
+      expect(ingredients.some(({ item }) => item.includes("ingefärspasta"))).toBe(false);
     }
   });
 });
