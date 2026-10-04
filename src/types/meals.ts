@@ -27,6 +27,7 @@ export type Recipe = {
   protein: number;
   tags: string[];
   scores: RecipeScore;
+  imageUrl?: string;
   imagePosition?: { column: number; row: number };
   ingredientGroups: IngredientGroup[];
   instructions: string[];
