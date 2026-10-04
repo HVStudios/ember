@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { emberMealsV1 } from "./ember-meals-v1";
 
 describe("Ember Meals v1", () => {
-  it("contains sixteen complete and unique recipes", () => {
-    expect(emberMealsV1).toHaveLength(16);
-    expect(new Set(emberMealsV1.map(({ id }) => id)).size).toBe(16);
+  it("contains eighteen complete and unique recipes", () => {
+    expect(emberMealsV1).toHaveLength(18);
+    expect(new Set(emberMealsV1.map(({ id }) => id)).size).toBe(18);
     for (const recipe of emberMealsV1) {
       expect(recipe.servings).toBe(4);
       expect(recipe.calories).toBeGreaterThanOrEqual(650);

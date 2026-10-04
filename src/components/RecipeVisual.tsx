@@ -2,6 +2,14 @@ import type { CSSProperties } from "react";
 import type { Recipe } from "@/types/meals";
 
 export function RecipeVisual({ recipe, compact = false }: { recipe: Recipe; compact?: boolean }) {
+  if (recipe.imageUrl) {
+    return (
+      <div className={`recipe-visual ${compact ? "recipe-visual--compact" : ""}`} role="img" aria-label={recipe.name}>
+        <img src={recipe.imageUrl} alt="" loading={compact ? "lazy" : "eager"} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      </div>
+    );
+  }
+
   if (!recipe.imagePosition) {
     return (
       <div className={`recipe-visual recipe-visual--placeholder ${compact ? "recipe-visual--compact" : ""}`} role="img" aria-label={recipe.name}>
