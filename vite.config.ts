@@ -19,7 +19,7 @@ export default defineConfig({
       icons: [{ src: "/ember-icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any maskable" }],
     },
     workbox: {
-      globPatterns: ["**/*.{js,css,html,svg,png}"],
+      globPatterns: ["**/*.{js,css,html,svg,png,jpg,jpeg,webp}"],
       navigateFallback: "/index.html",
       cleanupOutdatedCaches: true,
     },

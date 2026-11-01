@@ -4,6 +4,7 @@ const i = (amount: number | undefined, unit: string | undefined, item: string, n
 
 export const emberMealsV1Additions: Recipe[] = [
   {
+    imageUrl: "/media/meals/chicken-gyros.jpg",
     id: "chicken-gyros", name: "Chicken Gyros",
     description: "Pannstekt gyroskyckling med pita, krispig sallad, fetaost och tzatziki.",
     servings: 4, minutes: 50, priceSek: [42, 55], calories: 690, protein: 49,
@@ -20,6 +21,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "Kycklingen håller 4 dagar i kyl och kan frysas. Sallad och tzatziki ska inte frysas.",
   },
   {
+    imageUrl: "/media/meals/chicken-souvlaki.jpg",
     id: "chicken-souvlaki", name: "Chicken Souvlaki med citronpotatis",
     description: "Citron- och örtmarinerad kyckling med saftig ugnspotatis och sval yoghurtsås.",
     servings: 4, minutes: 60, priceSek: [40, 53], calories: 680, protein: 50,
@@ -36,6 +38,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "4 dagar i kyl. Kyckling och potatis kan frysas.",
   },
   {
+    imageUrl: "/media/meals/bifteki.jpg",
     id: "bifteki", name: "Bifteki med fetaost",
     description: "Grekiska färsbiffar fyllda med fetaost, serverade med rostad potatis och tzatziki.",
     servings: 4, minutes: 55, priceSek: [46, 60], calories: 720, protein: 45,
@@ -52,6 +55,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "4 dagar i kyl. Biffar och potatis kan frysas.",
   },
   {
+    imageUrl: "/media/meals/soutzoukakia.jpg",
     id: "soutzoukakia", name: "Soutzoukakia med citronpotatis & tzatziki",
     description: "Kryddiga grekiska köttbullar i tomatsås med citronrostad potatis och kall tzatziki.",
     servings: 4, minutes: 50, priceSek: [45, 60], calories: 700, protein: 48,
@@ -70,6 +74,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "3–4 dagar i kyl. Förvara tzatziki separat. Köttbullar och tomatsås kan frysas separat från potatis och tzatziki.",
   },
   {
+    imageUrl: "/media/meals/greek-chicken-bake.jpg",
     id: "greek-chicken-bake", name: "Grekisk kycklinggratäng",
     description: "Allt-i-ett-gratäng med citronkyckling, potatis, tomat, oliver och fetaost.",
     servings: 4, minutes: 55, priceSek: [44, 58], calories: 675, protein: 52,
@@ -84,6 +89,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "4 dagar i kyl. Kan frysas, men potatisen blir något mjukare.",
   },
   {
+    imageUrl: "/media/meals/beef-and-broccoli.jpg",
     id: "beef-and-broccoli", name: "Beef & Broccoli",
     description: "Snabbstekt biff och broccoli i en blank soja- och ostronsås.",
     servings: 4, minutes: 35, priceSek: [52, 68], calories: 660, protein: 47,
@@ -99,6 +105,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "4 dagar i kyl. Sås och kött kan frysas; broccolin blir mjukare efter upptining.",
   },
   {
+    imageUrl: "/media/meals/chicken-teriyaki.jpg",
     id: "chicken-teriyaki", name: "Chicken Teriyaki",
     description: "Saftig kyckling i hemgjord teriyakisås med ris och rostade grönsaker.",
     servings: 4, minutes: 40, priceSek: [39, 52], calories: 680, protein: 48,
@@ -114,6 +121,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "4 dagar i kyl. Kyckling, ris och sås kan frysas.",
   },
   {
+    imageUrl: "/media/meals/kung-pao-chicken.jpg",
     id: "kung-pao-chicken", name: "Kung Pao Chicken",
     description: "Sötstark kycklingwok med paprika, zucchini, jordnötter och sichuanpeppar.",
     servings: 4, minutes: 40, priceSek: [40, 53], calories: 700, protein: 49,
@@ -129,6 +137,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "4 dagar i kyl. Frys gärna jordnötterna separat.",
   },
   {
+    imageUrl: "/media/meals/thai-red-curry.jpg",
     id: "thai-red-curry", name: "Thai Red Curry med kyckling",
     description: "Krämig röd curry med kyckling, lime och färgstarka grönsaker.",
     servings: 4, minutes: 40, priceSek: [42, 56], calories: 710, protein: 46,
@@ -144,6 +153,7 @@ export const emberMealsV1Additions: Recipe[] = [
     storage: "4 dagar i kyl eller upp till 3 månader i frys. Frys gärna curryn separat från riset.",
   },
   {
+    imageUrl: "/media/meals/chicken-satay.jpg",
     id: "chicken-satay", name: "Chicken Satay med jordnötssås",
     description: "Kryddig pannstekt kyckling med krämig jordnötssås och syrliga grönsaker.",
     servings: 4, minutes: 50, priceSek: [41, 54], calories: 720, protein: 52,
@@ -158,24 +168,6 @@ export const emberMealsV1Additions: Recipe[] = [
     variations: ["Servera med nudlar.","Lägg till sriracha i såsen."],
     alternatives: ["Mandel- eller cashewsmör fungerar vid jordnötsbyte.","Tofu kan marineras på samma sätt."],
     storage: "4 dagar i kyl. Kyckling och ris kan frysas. Jordnötssåsen håller minst 5 dagar i kyl.",
-  },
-  {
-    imageUrl: "/media/meals/provencal-chicken-ratatouille.jpg",
-    id: "provencal-chicken-ratatouille", name: "Provencalsk kyckling med ratatouille",
-    description: "Örtkryddad kyckling med ratatouille, rostad potatis och citron- och örtsås.",
-    servings: 4, minutes: 60, priceSek: [45, 60], calories: 650, protein: 49,
-    tags: ["Kyckling", "Franskt", "Meal prep"], scores: { mealPrep: 5, freezer: 4, taste: 5 },
-    ingredientGroups: [
-      { title: "Provencalsk kyckling", ingredients: [i(700,"g","kycklingfilé"),i(1,"msk","olivolja"),i(.75,"tsk","torkad timjan"),i(.5,"tsk","torkad oregano"),i(.25,"tsk","torkad rosmarin"),i(1,"tsk","vitlökspulver"),i(.5,undefined,"citron","zest"),i(1,"tsk","salt"),i(undefined,undefined,"svartpeppar","rikligt")] },
-      { title: "Ratatouille", ingredients: [i(1,undefined,"aubergine"),i(1,undefined,"zucchini"),i(1,undefined,"röd paprika"),i(1,undefined,"gul paprika"),i(1,undefined,"gul eller röd lök"),i(3,undefined,"vitlöksklyftor","finhackade eller pressade"),i(400,"g","krossade tomater"),i(1,"msk","tomatpuré"),i(1.5,"msk","olivolja"),i(1,"tsk","torkad timjan"),i(.5,"tsk","torkad oregano"),i(.5,"tsk","torkad rosmarin"),i(.5,"tsk","chiliflakes","valfritt"),i(1,"tsk","rödvinsvinäger","1–2 tsk till 4 portioner, efter smak"),i(undefined,undefined,"salt och svartpeppar"),i(undefined,undefined,"färsk basilika eller persilja")] },
-      { title: "Rostad potatis", ingredients: [i(800,"g","småpotatis"),i(1,"msk","olivolja"),i(.5,"tsk","torkad timjan"),i(.5,"tsk","torkad oregano"),i(.25,"tsk","torkad rosmarin"),i(.5,"tsk","vitlökspulver"),i(undefined,undefined,"salt och svartpeppar")] },
-      { title: "Citron- och örtsås", ingredients: [i(250,"g","grekisk yoghurt"),i(1,"msk","majonnäs"),i(1,undefined,"liten vitlöksklyfta","finhackad eller pressad"),i(1.5,"msk","citronsaft","1½–2 msk till 4 portioner, efter smak"),i(.5,undefined,"citron","zest"),i(2,"msk","finhackad persilja"),i(1,"msk","finhackad basilika"),i(.5,"tsk","honung"),i(undefined,undefined,"salt"),i(undefined,undefined,"svartpeppar","rikligt"),i(undefined,undefined,"vatten","lite vid behov")] },
-    ],
-    instructions: ["Sätt ugnen på 220 °C. Halvera småpotatisen och blanda med potatisens olivolja, torkade örter, vitlökspulver, salt och svartpeppar. Rosta på en plåt i 30–40 minuter och vänd efter halva tiden.","Blanda kycklingen med dess olivolja, torkade örter, vitlökspulver, citronzest, salt och rikligt med svartpeppar. Låt stå medan grönsakerna förbereds.","Skär aubergine, zucchini och paprika i bitar och hacka löken. Stek auberginen i en del av ratatouillens olivolja tills den fått färg och lägg åt sidan.","Stek lök, zucchini och paprika i resten av oljan. Tillsätt vitlök och tomatpuré och fräs en minut.","Lägg tillbaka auberginen och tillsätt krossade tomater, ratatouillens torkade örter och eventuellt chiliflakes. Sjud 20–25 minuter tills grönsakerna är mjuka. Smaka av med rödvinsvinäger, salt och svartpeppar och vänd ner färsk basilika eller persilja.","Stek kycklingen i en panna på medelvärme tills den fått färg och är genomstekt. Låt vila fem minuter innan den skivas.","Rör ihop yoghurt, majonnäs, vitlök, citronsaft, citronzest, persilja, basilika och honung. Smaka av med salt och rikligt med svartpeppar och späd med lite vatten vid behov.","Servera kyckling, ratatouille och rostad potatis med den kalla såsen. För matlådor, förvara såsen separat."],
-    tips: ["Smula den torkade rosmarinen mellan fingrarna för jämnare fördelning.","Bryn auberginen i omgångar så får den bättre stekyta.","Tid, pris och näringsvärden är uppskattningar för fyra portioner; yoghurtens fetthalt och grönsakernas storlek påverkar näringsvärdena."],
-    variations: ["Uteslut chiliflakes för en mildare ratatouille.","Välj basilika eller persilja till ratatouillen efter smak."],
-    alternatives: ["Laktosfri grekisk yoghurt fungerar i såsen.","Kycklinglårfilé kan ersätta kycklingfilén; anpassa tillagningstiden."],
-    storage: "Förvara såsen separat i kyl. Frys gärna kyckling och ratatouille; rostad potatis kan också frysas men blir mjukare efter upptining.",
   },
   {
     id: "pad-kra-pao-beef-extra-vegetables", name: "Pad Kra Pao med nötfärs & extra grönsaker",
@@ -193,5 +185,22 @@ export const emberMealsV1Additions: Recipe[] = [
     variations: ["Anpassa hettan med en eller två röda chili."],
     alternatives: ["Välj honung eller farinsocker till såsen."],
     storage: "Förvara ris, färs och grönsaker kylda och gärna äggen separat. Frys färs och grönsaker separat från äggen.",
+  },
+  {
+    id: "dan-dan-noodles-beef", name: "Dan Dan Noodles med nötfärs",
+    description: "Nudlar med brynt nötfärs, pak choi och morot i en sås med jordnöt, tahini och chili crisp.",
+    servings: 4, minutes: 30, priceSek: [40, 55], calories: 725, protein: 48,
+    tags: ["Nötfärs", "Nudlar", "Starkt", "Meal prep"], scores: { mealPrep: 4, freezer: 3, taste: 5 },
+    imageUrl: "/media/meals/dan-dan-noodles-beef.jpg",
+    ingredientGroups: [
+      { title: "Köttfärs", ingredients: [i(700,"g","nötfärs","gärna 5 %"),i(2,undefined,"vitlöksklyftor"),i(1,"tsk","malen ingefära"),i(2,"msk","soja"),i(1,"msk","risvinäger"),i(1,"tsk","sesamolja")] },
+      { title: "Sås", ingredients: [i(4,"msk","soja"),i(2,"msk","jordnötssmör"),i(2,"msk","tahini"),i(2,"msk","risvinäger"),i(1,"msk","chili crisp eller chiliolja","1–2 msk till 4 portioner"),i(1,"msk","honung eller farinsocker"),i(1,"tsk","sesamolja"),i(1,"dl","varmt vatten","1–1½ dl till 4 portioner; späd efter behov")] },
+      { title: "Övrigt", ingredients: [i(300,"g","äggnudlar eller vetenudlar"),i(2,undefined,"pak choi"),i(2,undefined,"morötter"),i(3,undefined,"salladslökar"),i(undefined,undefined,"sesamfrön")] },
+    ],
+    instructions: ["Blanda ingredienserna till såsen. Börja med 1 dl vatten till 4 portioner och späd efter behov. Såsen ska vara ganska lös.","Koka nudlarna någon minut kortare än förpackningen anger.","Bryn nötfärsen ordentligt. Tillsätt vitlök och ingefära och stek kort.","Tillsätt soja, risvinäger och sesamolja och låt vätskan nästan helt koka in i köttet.","Strimla pak choi och morot och stek hastigt så att de fortfarande har struktur.","Blanda nudlarna med såsen och grönsakerna. Fördela färsen ovanpå och avsluta med salladslök, sesamfrön och eventuellt lite extra chili crisp."],
+    tips: ["Meal prep: Gör såsen lite lösare än du egentligen vill ha den. Nudlarna kommer suga upp väldigt mycket vätska över natten.","Näringsvärden enligt receptets uppskattning: cirka 700–750 kcal och 45–50 g protein per portion. Receptkortet visar mitten av intervallen, avrundat. Priset är uppskattat."],
+    variations: ["Anpassa hettan med 1–2 msk chili crisp eller chiliolja till 4 portioner."],
+    alternatives: ["Välj äggnudlar eller vetenudlar.","Välj honung eller farinsocker till såsen."],
+    storage: "Förvara i kyl. Späd med en skvätt vatten vid uppvärmning om nudlarna har sugit upp såsen.",
   },
 ];
